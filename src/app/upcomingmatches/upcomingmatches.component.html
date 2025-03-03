@@ -1,0 +1,79 @@
+<div class="matches-container">
+  <h1>Upcoming Cricket Matches</h1>
+
+  <!-- Match Type Filter -->
+  <div class="match-type-filter">
+    <div class="btn-group" role="group" aria-label="Match type filter">
+      <button
+        *ngFor="let type of getAvailableMatchTypes()"
+        class="btn"
+        [class.btn-primary]="selectedMatchType === type"
+        [class.btn-outline-primary]="selectedMatchType !== type"
+        (click)="filterMatchesByType(type)"
+      >
+        {{ type }}
+      </button>
+    </div>
+  </div>
+
+  <div class="series-container" *ngFor="let series of filteredMatches">
+    <div class="series-card" *ngIf="series.seriesAdWrapper">
+      <h2 class="series-title">{{ series.seriesAdWrapper.seriesName }}</h2>
+
+      <div
+        class="match-card mb-4"
+        *ngFor="let match of series.seriesAdWrapper.matches"
+      >
+        <div class="match-header">
+          <span class="match-format">{{ match.matchInfo.matchFormat }}</span>
+          <span class="match-desc">{{ match.matchInfo.matchDesc }}</span>
+        </div>
+
+        <div class="teams-container">
+          <div class="team">
+            <div class="team-name">{{ match.matchInfo.team1.teamName }}</div>
+            <div
+              class="team-score"
+              *ngIf="match.matchScore?.team1Score?.inngs1"
+            >
+              {{ match.matchScore.team1Score.inngs1.runs }}/
+              {{ match.matchScore.team1Score.inngs1.wickets }}
+              ({{ match.matchScore.team1Score.inngs1.overs }})
+            </div>
+          </div>
+
+          <div class="vs">VS</div>
+
+          <div class="team">
+            <div class="team-name">{{ match.matchInfo.team2.teamName }}</div>
+            <div
+              class="team-score"
+              *ngIf="match.matchScore?.team2Score?.inngs1"
+            >
+              {{ match.matchScore.team2Score.inngs1.runs }}/
+              {{ match.matchScore.team2Score.inngs1.wickets }}
+              ({{ match.matchScore.team2Score.inngs1.overs }})
+            </div>
+          </div>
+        </div>
+
+        <div class="match-footer">
+          <div class="venue">
+            {{ match.matchInfo.venueInfo.ground }},
+            {{ match.matchInfo.venueInfo.city }}
+          </div>
+          <button
+            class="btn btn-primary btn-sm"
+            [routerLink]="['/scorecard', match.matchInfo.matchId]"
+          >
+            View Scorecard
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-matches" *ngIf="filteredMatches.length === 0">
+    <p>No matches available for {{ selectedMatchType }} cricket</p>
+  </div>
+</div>

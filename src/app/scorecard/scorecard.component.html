@@ -1,0 +1,90 @@
+<div class="scorecard-modal" *ngIf="getCurrentInnings()">
+  <div class="scorecard-container">
+    <div class="scorecard-header">
+      <div class="header-content">
+        <h2>{{ getBattingTeamName() }} Innings</h2>
+        <span class="total-score">{{ getTotalScore() }}</span>
+      </div>
+      <div class="innings-switch">
+        <button
+          class="btn btn-outline-primary btn-sm"
+          (click)="switchInnings()"
+        >
+          Switch Innings
+        </button>
+      </div>
+    </div>
+
+    <!-- Batting Section -->
+    <div class="batting-section">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Batter</th>
+            <th class="text-center">R</th>
+            <th class="text-center">B</th>
+            <th class="text-center">4s</th>
+            <th class="text-center">6s</th>
+            <th class="text-center">SR</th>
+            <th>How Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let batsman of batsmenList">
+            <td>
+              {{ batsman.batName }}
+              <span class="captain-badge" *ngIf="batsman.isCaptain">(c)</span>
+              <span class="keeper-badge" *ngIf="batsman.isKeeper">(wk)</span>
+            </td>
+            <td class="text-center">{{ batsman.runs }}</td>
+            <td class="text-center">{{ batsman.balls }}</td>
+            <td class="text-center">{{ batsman.fours }}</td>
+            <td class="text-center">{{ batsman.sixes }}</td>
+            <td class="text-center">{{ batsman.strikeRate.toFixed(2) }}</td>
+            <td class="out-desc">{{ batsman.outDesc }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="7" class="extras">Extras: {{ getExtras() }}</td>
+          </tr>
+          <tr>
+            <td colspan="7" class="total">Total: {{ getTotalScore() }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="bowling-section mt-4">
+      <h3>Bowling</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Bowler</th>
+            <th class="text-center">O</th>
+            <th class="text-center">M</th>
+            <th class="text-center">R</th>
+            <th class="text-center">W</th>
+            <th class="text-center">Econ</th>
+            <th class="text-center">Dots</th>
+            <th class="text-center">Wd</th>
+            <th class="text-center">Nb</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bowler of bowlersList">
+            <td>{{ bowler.bowlName }}</td>
+            <td class="text-center">{{ bowler.overs }}</td>
+            <td class="text-center">{{ bowler.maidens }}</td>
+            <td class="text-center">{{ bowler.runs }}</td>
+            <td class="text-center stat-highlight">{{ bowler.wickets }}</td>
+            <td class="text-center">{{ bowler.economy.toFixed(2) }}</td>
+            <td class="text-center">{{ bowler.dots }}</td>
+            <td class="text-center">{{ bowler.wides }}</td>
+            <td class="text-center">{{ bowler.noBalls }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
