@@ -13,7 +13,7 @@ import { environment } from '../environments/environment';
 export class CricketService {
   private headers = new HttpHeaders({
     'x-rapidapi-host': environment.rapidApiHost,
-    'x-rapidapi-key': environment.apiKey
+    'x-rapidapi-key': environment.apiKey,
   });
 
   constructor(private http: HttpClient) {}
