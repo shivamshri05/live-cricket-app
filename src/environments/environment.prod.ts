@@ -8,6 +8,6 @@ export interface Environment {
 export const environment: Environment = {
   production: false,
   apiUrl: 'https://cricbuzz-cricket.p.rapidapi.com',
-  apiKey: process.env['RAPIDAPI_KEY'],
+  apiKey: process.env['NG_APP_RAPIDAPI_KEY'],
   rapidApiHost: 'cricbuzz-cricket.p.rapidapi.com'
 };
