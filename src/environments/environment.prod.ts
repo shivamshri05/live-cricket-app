@@ -1,13 +1,6 @@
-export interface Environment {
-  production: boolean;
-  apiUrl: string;
-  apiKey: any;
-  rapidApiHost: string;
-}
-
-export const environment: Environment = {
-  production: false,
+export const environment = {
+  production: true,
   apiUrl: 'https://cricbuzz-cricket.p.rapidapi.com',
-  apiKey: process.env['NG_APP_RAPIDAPI_KEY'],
-  rapidApiHost: 'cricbuzz-cricket.p.rapidapi.com'
+  apiKey: '6f76cd915amshdea56ca8f6f621fp18c111jsnc1b12020e1c5',
+    rapidApiHost: 'cricbuzz-cricket.p.rapidapi.com'
 };

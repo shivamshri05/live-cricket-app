@@ -7,7 +7,6 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class RecentmatchapiService {
-  
  private apiUrl = 'https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent '; 
 
   constructor(private http: HttpClient) { }
@@ -17,7 +16,7 @@ export class RecentmatchapiService {
       'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com', 
       'x-rapidapi-key': environment.apiKey 
     };
-      console.log(headers);
+
     return this.http.get(this.apiUrl, { headers });
   }
 }
