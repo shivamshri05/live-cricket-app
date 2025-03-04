@@ -16,7 +16,7 @@ export class RecentmatchapiService {
       'x-rapidapi-host': 'cricbuzz-cricket.p.rapidapi.com', 
       'x-rapidapi-key': environment.apiKey 
     };
-
+      console.log(headers);
     return this.http.get(this.apiUrl, { headers });
   }
 }
